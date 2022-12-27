@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author PC
@@ -15,9 +17,9 @@ public class user {//Mindenre állítottam getter, setter minden kivéve Szem sz
     private Integer phone; //check mennyi számjegy?
     private String email; //check @?
     private String cim; //Lakcím
-    private Integer szul;//Szül idő
+    private Date szul;//Szül idő (int year,int month,int day)
 
-    public user (String name, Integer id, Integer phone, String email, String cim, Integer szul){
+    public user (String name, Integer id, Integer phone, String email, String cim, Date szul){
         this.name = name;
         this.id = id;
         this.phone = phone;
@@ -46,7 +48,7 @@ public class user {//Mindenre állítottam getter, setter minden kivéve Szem sz
         return cim;
     }
 
-    public Integer getSzul() {
+    public Date getSzul() {
         return szul;
     }
 
