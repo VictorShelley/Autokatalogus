@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+
+
+<root>
+    <car id="0">
+        <brand>Trabant</brand>
+        <modell>Modellx</modell>
+        <kivitel>Kivitelx</kivitel>
+        <evjarat>1991</evjarat>
+        <alvaz>12345678901234567</alvaz>
+        <motor>1234</motor>
+        <uzemanyag>Olyan</uzemanyag>
+        <szin>NemFeher</szin>
+        <meghajt>hatso</meghajt>
+        <telj>Valamilyen</telj>
+        <henger>dunno</henger>
+        <fogyaszt>Sokat</fogyaszt>
+        <ajtok>3</ajtok>
+        <ules>4</ules>
+    </car>
+    <car id="1">
+        <brand>Trabant</brand>
+        <modell>Modellx</modell>
+        <kivitel>Kivitelx</kivitel>
+        <evjarat>1991</evjarat>
+        <alvaz>22345678901234567</alvaz>
+        <motor>2234</motor>
+        <uzemanyag>Olyan</uzemanyag>
+        <szin>NemFeher</szin>
+        <meghajt>hatso</meghajt>
+        <telj>Valamilyen</telj>
+        <henger>dunno</henger>
+        <fogyaszt>Sokat</fogyaszt>
+        <ajtok>3</ajtok>
+        <ules>4</ules>
+    </car>
+</root>
+

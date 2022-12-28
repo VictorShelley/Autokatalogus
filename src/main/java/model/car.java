@@ -19,7 +19,7 @@ public class car { //El kéne dönteni hogy akkor a van egy alap katalogus, és 
     private Integer motor;
     private String uzemanyag;
     private String szin;
-    private carEnum meghajtas;
+    private carEnum meghajtas; 
     private String teljesitmeny;
     private String henger;
     private String fogyasztas;

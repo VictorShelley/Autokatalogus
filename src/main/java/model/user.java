@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author PC
  */
-public class user {//Mindenre állítottam getter, setter minden kivéve Szem szám, Szül idő (Gondolom ez a kettő változhat)
+public class user{//Mindenre állítottam getter, setter minden kivéve Szem szám, Szül idő (Gondolom ez a kettő változhat)
     //Név,Szemszám,Telefonszám,Email,Lakcím,Szül.idő
     private String name; //egybe/külön?
     private Integer id; //Személyi //Check(1./1,2,3,4 11.=(1.*1+2.*2...10.*10)/11)?
