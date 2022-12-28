@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+
+
+<root>
+    <eladas id="0">
+        <szem>asd</szem>
+        <alvaz>12345678901234567</alvaz>
+        <motor>1234</motor>
+    </eladas>
+</root>
+

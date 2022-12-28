@@ -142,7 +142,7 @@ public class XmlRead {
 
                   Element element = (Element) node;
 
-                  String id = element.getAttribute("id");//lineup id
+                  String id = element.getAttribute("id");
 
                   //szöveg
                   String brand = element.getElementsByTagName("brand").item(0).getTextContent();
@@ -161,27 +161,28 @@ public class XmlRead {
                   String ajtok = element.getElementsByTagName("ajtok").item(0).getTextContent();
                   String ules = element.getElementsByTagName("ules").item(0).getTextContent();
 
-                  Integer alvazi = Integer.valueOf(alvaz);
-                  Integer motori = Integer.valueOf(motor);
+                  
+                  
+                  
                 if(motor.equals(motorszam)) {
-                      if (alvaz.equals(alvazszam)) {
-                          read.put("id: " + id);
-                          read.put("Marka: " + brand);
-                          read.put("Modell: " + modell);
-                          read.put("Ules: " + ules);
-                          read.put("Kivitel: " + kivitel);
-                          read.put("Evjarat: " + evjarat);
-                          read.put("Alvaz: " + alvaz);
-                          read.put("Motor: " + motor);
-                          read.put("Uzemanyag: " + uzemanyag);
-                          read.put("Szin: " + szin);
-                          read.put("Meghajtas: " + meghajt);
-                          read.put("Teljesitmeny: " + telj);
-                          read.put("Henger: " + henger);
-                          read.put("Fogyasztas: " + fogyaszt);
-                          read.put("Ajtok szama: " + ajtok);
-                          read.put("Ulesek szama: " + ules);
-                      }
+                    if (alvaz.equals(alvazszam)) {
+                        read.put("id: " + id);
+                        read.put("Marka: " + brand);
+                        read.put("Modell: " + modell);
+                        read.put("Ules: " + ules);
+                        read.put("Kivitel: " + kivitel);
+                        read.put("Evjarat: " + evjarat);
+                        read.put("Alvaz: " + alvaz);
+                        read.put("Motor: " + motor);
+                        read.put("Uzemanyag: " + uzemanyag);
+                        read.put("Szin: " + szin);
+                        read.put("Meghajtas: " + meghajt);
+                        read.put("Teljesitmeny: " + telj);
+                        read.put("Henger: " + henger);
+                        read.put("Fogyasztas: " + fogyaszt);
+                        read.put("Ajtok szama: " + ajtok);
+                        read.put("Ulesek szama: " + ules);
+                    }
                 }
               }
           }

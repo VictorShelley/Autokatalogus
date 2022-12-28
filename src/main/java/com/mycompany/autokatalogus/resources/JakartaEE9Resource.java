@@ -31,16 +31,10 @@ public class JakartaEE9Resource {
     public Response ReadChosenCar(String be){
         String szetszedve[] = be.split("-",2);
         
-        String elsos = szetszedve[0];
-        String masodiks = szetszedve[1];
-        
-        /*long alvaz = Integer.valueOf(elsos);
-        int motor = Integer.valueOf(masodiks);
-        
-        elsos = "12345678901234567";
-        masodiks = "1234";*/
+        String alvaz = szetszedve[0];
+        String motor = szetszedve[1];
         XmlRead read = new XmlRead();
-        return Response.ok(read.carValaszt(elsos,masodiks).toString())
+        return Response.ok(read.carValaszt(alvaz,motor).toString())
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }
