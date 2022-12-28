@@ -33,8 +33,11 @@ import org.json.JSONObject;
  * @author PC
  */
 public class XmlRead {
+    //Állítsd át magadnak
+    //Külön fájlba tároljuk a különböző osztályokat mert az xml írás fellülír mindent
+    private static final String CARXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
+    private static final String USERXML = "D:\\Kiko\\netbeans\\projektek\\Autokatalogus\\src\\main\\java\\model\\users.xml";
     
-    private static final String FILENAME = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
     public JSONArray carRead() {
         JSONArray read = new JSONArray();
         //String FILENAME = "car.xml";
@@ -47,7 +50,7 @@ public class XmlRead {
           
           DocumentBuilder db = dbf.newDocumentBuilder();
 
-          Document doc = db.parse(new File(FILENAME));
+          Document doc = db.parse(new File(CARXML));
           doc.getDocumentElement().normalize();
 
           
@@ -124,7 +127,7 @@ public class XmlRead {
           
           DocumentBuilder db = dbf.newDocumentBuilder();
 
-          Document doc = db.parse(new File(FILENAME));
+          Document doc = db.parse(new File(CARXML));
           doc.getDocumentElement().normalize();
 
           
@@ -190,4 +193,9 @@ public class XmlRead {
       
         return read;
   }
+    
+  /*   public JSONArray UserRead() {
+         
+     }
+*/
 }

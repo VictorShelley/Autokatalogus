@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
--->
-
-
-
-<root>
-    
-</root>
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<users>
+    <user>
+        <id>6969XD</id>
+        <name>Végh Béla</name>
+        <phone>70/6969420</phone>
+        <email>asd@asd.com</email>
+        <cim>4269 Csajágarőcsőge Fő u.69</cim>
+        <szul>Sat Jun 12 00:00:00 CEST 1982</szul>
+    </user>
+</users>

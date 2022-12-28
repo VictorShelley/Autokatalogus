@@ -39,7 +39,7 @@ public class XmlReadTest {
 
     /**
      * Test of carRead method, of class XmlRead.
-     */
+     
     @Test
     public void testCarRead() {
         System.out.println("carRead");
@@ -50,10 +50,11 @@ public class XmlReadTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+    */
 
     /**
      * Test of carValaszt method, of class XmlRead.
-     */
+     
     @Test
     public void testCarValaszt() {
         System.out.println("carValaszt");
@@ -66,5 +67,17 @@ public class XmlReadTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+    */
+    /*
+    @Test
+    public void testUserRead() {
+        System.out.println("carRead");
+        XmlRead instance = new XmlRead();
+        JSONArray expResult = null;
+        JSONArray result = instance.carRead();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    */
 }
