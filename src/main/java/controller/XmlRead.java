@@ -25,7 +25,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import model.carEnum;
+import model.user;
 import org.json.JSONArray;
 import org.json.JSONObject;
 /**
@@ -193,8 +196,72 @@ public class XmlRead {
         return read;
   }
     
-  /*   public JSONArray UserRead() {
-         
+     public ArrayList UserRead() {
+                 ArrayList<user> users = new ArrayList<>();
+        try {
+            DocumentBuilderFactory documentBuilderFactory =
+                    DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder =
+                    documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(USERXML);
+
+            Element rootElement = document.getDocumentElement();
+
+            NodeList childNodesList = rootElement.getChildNodes();
+
+            int numberOfElementNodes = 0;
+            Node node;
+            for (int i = 0; i < childNodesList.getLength(); i++) {
+                node = childNodesList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                    numberOfElementNodes++;
+                    NodeList childNodesOfBooksTag = node.getChildNodes();
+                    String id = "", name = "", phone = "", email = "", cim = "", szul = "";
+                    int temp =childNodesOfBooksTag.getLength();
+                    for (int j = 0; j < childNodesOfBooksTag.getLength(); j++) {
+
+                         if (childNodesOfBooksTag.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                            if (null!=childNodesOfBooksTag.item(j).getNodeName())switch (childNodesOfBooksTag.item(j).getNodeName()) {
+                                 case "id":
+                                     id = childNodesOfBooksTag.item(j).getTextContent();
+                                     break;
+                                 case "name":
+                                     name = childNodesOfBooksTag.item(j).getTextContent();
+                                     break;                               
+                                 case "phone":
+                                     phone = childNodesOfBooksTag.item(j).getTextContent();
+                                     break;
+                                 case "email":
+                                     email = childNodesOfBooksTag.item(j).getTextContent();
+                                     break;
+                                 case "cim":
+                                     cim = childNodesOfBooksTag.item(j).getTextContent();
+                                     break;
+                                 case "szul":
+                                     szul = childNodesOfBooksTag.item(j).getTextContent();
+                                     break;
+                                 default:
+                                     break;
+                             }
+                           }
+                    }
+                    //nemtudom hogy kéne megoldani
+                    //legegyszerűbb átírni stringre
+                    Long l = Long.parseLong(szul);
+                    Date d = new Date(l);
+                    
+                    users.add(new user(name,id,phone,email,cim,d));
+                    }
+                
+                    
+                }
+            
+        } catch (Exception e) {          
+            e.printStackTrace();
+        }
+        return users;
      }
-*/
+
+    
 }

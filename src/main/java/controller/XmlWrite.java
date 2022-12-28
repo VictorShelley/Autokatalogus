@@ -45,7 +45,7 @@ public class XmlWrite {
                 createChildElement(document, bookElement, "phone", users.get(i).getPhone());
                 createChildElement(document, bookElement, "email", users.get(i).getEmail());
                 createChildElement(document, bookElement, "cim", users.get(i).getCim());
-                createChildElement(document, bookElement, "szul", users.get(i).getSzul().toString());
+                createChildElement(document, bookElement, "szul", String.valueOf(users.get(i).getSzul().getTime()));
             }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

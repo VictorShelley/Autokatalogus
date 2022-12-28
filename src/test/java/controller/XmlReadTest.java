@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.util.ArrayList;
 import org.json.JSONArray;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -73,11 +74,7 @@ public class XmlReadTest {
     public void testUserRead() {
         System.out.println("carRead");
         XmlRead instance = new XmlRead();
-        JSONArray expResult = null;
-        JSONArray result = instance.carRead();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
     */
 }
