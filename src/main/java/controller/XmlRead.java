@@ -218,7 +218,7 @@ public class XmlRead {
                     numberOfElementNodes++;
                     NodeList childNodesOfBooksTag = node.getChildNodes();
                     String id = "", name = "", phone = "", email = "", cim = "", szul = "";
-                    int temp =childNodesOfBooksTag.getLength();
+                    //int temp =childNodesOfBooksTag.getLength();
                     for (int j = 0; j < childNodesOfBooksTag.getLength(); j++) {
 
                          if (childNodesOfBooksTag.item(j).getNodeType() == Node.ELEMENT_NODE) {
@@ -246,8 +246,7 @@ public class XmlRead {
                              }
                            }
                     }
-                    //nemtudom hogy kéne megoldani
-                    //legegyszerűbb átírni stringre
+                    
                     Long l = Long.parseLong(szul);
                     Date d = new Date(l);
                     
