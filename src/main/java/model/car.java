@@ -4,6 +4,8 @@
  */
 package model;
 
+import org.json.JSONArray;
+
 /**
  *
  * @author PC
@@ -15,7 +17,7 @@ public class car { //El kéne dönteni hogy akkor a van egy alap katalogus, és 
     private String modell;
     private String kivitel;
     private Integer evjarat;
-    private Integer alvaz; //Check, hogy 17 jegyű?
+    private String alvaz; //Check, hogy 17 jegyű?
     private Integer motor;
     private String uzemanyag;
     private String szin;
@@ -26,7 +28,7 @@ public class car { //El kéne dönteni hogy akkor a van egy alap katalogus, és 
     private Integer ajtok;
     private Integer ules;
 
-    public car(String brand, String modell, String kivitel, Integer evjarat, Integer alvaz, Integer motor, String uzemanyag, String szin, carEnum meghajtas, String teljesitmeny, String henger, String fogyasztas, Integer ajtok, Integer ules) {
+    public car(String brand, String modell, String kivitel, Integer evjarat, String alvaz, Integer motor, String uzemanyag, String szin, carEnum meghajtas, String teljesitmeny, String henger, String fogyasztas, Integer ajtok, Integer ules) {
         this.brand = brand;
         this.modell = modell;
         this.kivitel = kivitel;
@@ -59,7 +61,7 @@ public class car { //El kéne dönteni hogy akkor a van egy alap katalogus, és 
         return evjarat;
     }
 
-    public Integer getAlvaz() {
+    public String getAlvaz() {
         return alvaz;
     }
 
@@ -101,6 +103,26 @@ public class car { //El kéne dönteni hogy akkor a van egy alap katalogus, és 
 
     public void setSzin(String szin) {
         this.szin = szin;
+    }
+    
+    public JSONArray toJsonArray(){
+        JSONArray sor = new JSONArray();
+        sor.put(this.brand);
+        sor.put(this.modell);
+        sor.put(this.kivitel);
+        sor.put(this.evjarat);
+        sor.put(this.alvaz);
+        sor.put(this.motor);
+        sor.put(this.uzemanyag);
+        sor.put(this.szin);
+        sor.put(this.meghajtas);
+        sor.put(this.teljesitmeny);
+        sor.put(this.henger);
+        sor.put(this.fogyasztas);
+        sor.put(this.ajtok);
+        sor.put(this.ules);
+        
+        return sor;
     }
     
 }

@@ -197,6 +197,75 @@ public class XmlRead {
         return read;
   }
     
+    public JSONArray CarReadData() {
+        JSONArray read = new JSONArray();
+      
+      DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+      try {
+          
+          DocumentBuilder db = dbf.newDocumentBuilder();
+
+          Document doc = db.parse(new File(CARXML));
+          doc.getDocumentElement().normalize();
+
+          
+          
+          NodeList list = doc.getElementsByTagName("car");
+
+          for (int temp = 0; temp < list.getLength(); temp++) {
+
+              Node node = list.item(temp);
+
+              if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                  Element element = (Element) node;
+
+                  String id = element.getAttribute("id");
+
+                //szöveg
+                String brand = element.getElementsByTagName("brand").item(0).getTextContent();
+                String modell = element.getElementsByTagName("modell").item(0).getTextContent();
+                String kivitel = element.getElementsByTagName("kivitel").item(0).getTextContent();
+                String evjarat = element.getElementsByTagName("evjarat").item(0).getTextContent();
+                String alvaz = element.getElementsByTagName("alvaz").item(0).getTextContent();
+                String motor = element.getElementsByTagName("motor").item(0).getTextContent();
+                String uzemanyag = element.getElementsByTagName("uzemanyag").item(0).getTextContent();
+                String szin = element.getElementsByTagName("szin").item(0).getTextContent();
+                String meghajts = element.getElementsByTagName("meghajt").item(0).getTextContent();
+                carEnum meghajt = carEnum.valueOf(meghajts);
+                String telj = element.getElementsByTagName("telj").item(0).getTextContent();
+                String henger = element.getElementsByTagName("henger").item(0).getTextContent();
+                String fogyaszt = element.getElementsByTagName("fogyaszt").item(0).getTextContent();
+                String ajtok = element.getElementsByTagName("ajtok").item(0).getTextContent();
+                String ules = element.getElementsByTagName("ules").item(0).getTextContent();
+
+
+                read.put(id);
+                read.put(brand);
+                read.put(modell);
+                read.put(kivitel);
+                read.put(evjarat);
+                read.put(alvaz);
+                read.put(motor);
+                read.put(uzemanyag);
+                read.put(szin);
+                read.put(meghajt);
+                read.put(telj);
+                read.put(henger);
+                read.put(fogyaszt);
+                read.put(ajtok);
+                read.put(ules);
+              }
+          }
+
+      } catch (ParserConfigurationException | SAXException | IOException e) {
+          e.printStackTrace();
+      }
+      
+        return read;
+  }
+    
      public ArrayList UserRead() {
                  ArrayList<user> users = new ArrayList<>();
         try {

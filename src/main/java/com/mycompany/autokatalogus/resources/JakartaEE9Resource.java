@@ -1,6 +1,7 @@
 package com.mycompany.autokatalogus.resources;
 
 import controller.XmlRead;
+import controller.XmlWrite;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -8,6 +9,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.json.JSONArray;
+import static model.convert.StringToCar;
 
 /**
  *
@@ -35,6 +38,23 @@ public class JakartaEE9Resource {
         String motor = szetszedve[1];
         XmlRead read = new XmlRead();
         return Response.ok(read.carValaszt(alvaz,motor).toString())
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+    
+    @POST
+    @Path("AddCar")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response AddCar(String be){
+        
+        JSONArray ki = new JSONArray();
+        ki = StringToCar(be);
+
+        XmlRead read = new XmlRead();
+        XmlWrite write = new XmlWrite();
+        boolean siker = write.CarAdd(ki);
+        return Response.ok(read.carRead().toString())
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }
