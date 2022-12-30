@@ -32,12 +32,13 @@ public class JakartaEE9Resource {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     public Response ReadChosenCar(String be){
-        String szetszedve[] = be.split("-",2);
-        
+        String[] szetszedve = be.split("-",2);
+       
         String alvaz = szetszedve[0];
         String motor = szetszedve[1];
         XmlRead read = new XmlRead();
-        return Response.ok(read.carValaszt(alvaz,motor).toString())
+        
+        return Response.ok(read.carValaszt(alvaz, motor).toString())
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }

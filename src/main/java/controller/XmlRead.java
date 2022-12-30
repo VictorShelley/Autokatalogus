@@ -38,11 +38,13 @@ import org.json.JSONObject;
 public class XmlRead {
     //Állítsd át magadnak
     //Külön fájlba tároljuk a különböző osztályokat mert az xml írás fellülír mindent
-    private static final String CARXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
-    private static final String USERXML = "D:\\Kiko\\netbeans\\projektek\\Autokatalogus\\src\\main\\java\\model\\users.xml";
+    private static final String CARXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
+    private static final String USERXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\users.xml";
     
-    public JSONArray carRead() {
-        JSONArray read = new JSONArray();
+    public JSONObject carRead() {
+        
+        JSONObject mainObj = new JSONObject();
+        JSONArray carList = new JSONArray();
         //String FILENAME = "car.xml";
         
         //String FILENAME = "C:\\Users\\PC\\Desktop\\car.xml";
@@ -55,7 +57,7 @@ public class XmlRead {
 
           Document doc = db.parse(new File(CARXML));
           doc.getDocumentElement().normalize();
-
+          
           
           
           NodeList list = doc.getElementsByTagName("car");
@@ -66,6 +68,8 @@ public class XmlRead {
 
               if (node.getNodeType() == Node.ELEMENT_NODE) {
 
+                  JSONObject car = new JSONObject();
+                  
                   Element element = (Element) node;
 
                   String id = element.getAttribute("id");//lineup id
@@ -93,48 +97,50 @@ public class XmlRead {
                   String ajtok = element.getElementsByTagName("ajtok").item(0).getTextContent();
                   String ules = element.getElementsByTagName("ules").item(0).getTextContent();
 
+                  car.put("id", id);
+                  car.put("Marka", brand);
+                  car.put("Modell", modell);
+                  car.put("Ules", ules);
+                  car.put("Kivitel", kivitel);
+                  car.put("Evjarat", evjarat);
+                  car.put("Alvaz", alvaz);
+                  car.put("Motor", motor);
+                  car.put("Uzemanyag", uzemanyag);
+                  car.put("Szin", szin);
+                  car.put("Meghajtas", meghajt);
+                  car.put("Teljesitmeny", telj);
+                  car.put("Henger", henger);
+                  car.put("Fogyasztas", fogyaszt);
+                  car.put("Ajtok szama", ajtok);
+                  car.put("Ulesek szama", ules);
+                
                   
+                  carList.put(car);
                   
-                  read.put("id: " + id);
-                  read.put("Marka: " + brand);
-                  read.put("Modell: " + modell);
-                  read.put("Ules: " + ules);
-                  read.put("Kivitel: " + kivitel);
-                  read.put("Evjarat: " + evjarat);
-                  read.put("Alvaz: " + alvaz);
-                  read.put("Motor: " + motor);
-                  read.put("Uzemanyag: " + uzemanyag);
-                  read.put("Szin: " + szin);
-                  read.put("Meghajtas: " + meghajt);
-                  read.put("Teljesitmeny: " + telj);
-                  read.put("Henger: " + henger);
-                  read.put("Fogyasztas: " + fogyaszt);
-                  read.put("Ajtok szama: " + ajtok);
-                  read.put("Ulesek szama: " + ules);
               }
           }
+          mainObj.put("cars", carList);
+          //read.put(read.getJSONObject(1).get("id").toString());
+         
 
       } catch (ParserConfigurationException | SAXException | IOException e) {
           e.printStackTrace();
       }
       
-        return read;
+        return mainObj;
   }
     
-    public JSONArray carValaszt(String alvazszam, String motorszam) {
-        JSONArray read = new JSONArray();
+    public JSONObject carValaszt(String alvazszam, String motorszam) {
+        JSONObject car = new JSONObject();
       
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
       try {
-          
           DocumentBuilder db = dbf.newDocumentBuilder();
 
           Document doc = db.parse(new File(CARXML));
           doc.getDocumentElement().normalize();
 
-          
-          
           NodeList list = doc.getElementsByTagName("car");
 
           for (int temp = 0; temp < list.getLength(); temp++) {
@@ -146,55 +152,50 @@ public class XmlRead {
                   Element element = (Element) node;
 
                   String id = element.getAttribute("id");
-
-                  //szöveg
-                  String brand = element.getElementsByTagName("brand").item(0).getTextContent();
-                  String modell = element.getElementsByTagName("modell").item(0).getTextContent();
-                  String kivitel = element.getElementsByTagName("kivitel").item(0).getTextContent();
-                  String evjarat = element.getElementsByTagName("evjarat").item(0).getTextContent();
                   String alvaz = element.getElementsByTagName("alvaz").item(0).getTextContent();
                   String motor = element.getElementsByTagName("motor").item(0).getTextContent();
-                  String uzemanyag = element.getElementsByTagName("uzemanyag").item(0).getTextContent();
-                  String szin = element.getElementsByTagName("szin").item(0).getTextContent();
-                  String meghajts = element.getElementsByTagName("meghajt").item(0).getTextContent();
-                  carEnum meghajt = carEnum.valueOf(meghajts);
-                  String telj = element.getElementsByTagName("telj").item(0).getTextContent();
-                  String henger = element.getElementsByTagName("henger").item(0).getTextContent();
-                  String fogyaszt = element.getElementsByTagName("fogyaszt").item(0).getTextContent();
-                  String ajtok = element.getElementsByTagName("ajtok").item(0).getTextContent();
-                  String ules = element.getElementsByTagName("ules").item(0).getTextContent();
-
-                  
-                  
-                  
-                if(motor.equals(motorszam)) {
+                  if(motor.equals(motorszam)) {
                     if (alvaz.equals(alvazszam)) {
-                        read.put("id: " + id);
-                        read.put("Marka: " + brand);
-                        read.put("Modell: " + modell);
-                        read.put("Ules: " + ules);
-                        read.put("Kivitel: " + kivitel);
-                        read.put("Evjarat: " + evjarat);
-                        read.put("Alvaz: " + alvaz);
-                        read.put("Motor: " + motor);
-                        read.put("Uzemanyag: " + uzemanyag);
-                        read.put("Szin: " + szin);
-                        read.put("Meghajtas: " + meghajt);
-                        read.put("Teljesitmeny: " + telj);
-                        read.put("Henger: " + henger);
-                        read.put("Fogyasztas: " + fogyaszt);
-                        read.put("Ajtok szama: " + ajtok);
-                        read.put("Ulesek szama: " + ules);
+                        //szöveg
+                        String brand = element.getElementsByTagName("brand").item(0).getTextContent();
+                        String modell = element.getElementsByTagName("modell").item(0).getTextContent();
+                        String kivitel = element.getElementsByTagName("kivitel").item(0).getTextContent();
+                        String evjarat = element.getElementsByTagName("evjarat").item(0).getTextContent();
+                        String uzemanyag = element.getElementsByTagName("uzemanyag").item(0).getTextContent();
+                        String szin = element.getElementsByTagName("szin").item(0).getTextContent();
+                        String meghajts = element.getElementsByTagName("meghajt").item(0).getTextContent();
+                        carEnum meghajt = carEnum.valueOf(meghajts);
+                        String telj = element.getElementsByTagName("telj").item(0).getTextContent();
+                        String henger = element.getElementsByTagName("henger").item(0).getTextContent();
+                        String fogyaszt = element.getElementsByTagName("fogyaszt").item(0).getTextContent();
+                        String ajtok = element.getElementsByTagName("ajtok").item(0).getTextContent();
+                        String ules = element.getElementsByTagName("ules").item(0).getTextContent();
+                        
+                        car.put("Id", id);
+                        car.put("Marka",brand);
+                        car.put("Modell",modell);
+                        car.put("Ules", ules);
+                        car.put("Kivitel", kivitel);
+                        car.put("Evjarat", evjarat);
+                        car.put("Alvaz", alvaz);
+                        car.put("Motor", motor);
+                        car.put("Uzemanyag", uzemanyag);
+                        car.put("Szin", szin);
+                        car.put("Meghajtas", meghajt);
+                        car.put("Teljesitmeny", telj);
+                        car.put("Henger", henger);
+                        car.put("Fogyasztas", fogyaszt);
+                        car.put("Ajtok szama", ajtok);
+                        car.put("Ulesek szama", ules);
                     }
                 }
               }
           }
-
       } catch (ParserConfigurationException | SAXException | IOException e) {
           e.printStackTrace();
       }
       
-        return read;
+        return car;
   }
     
     public JSONArray CarReadData() {
