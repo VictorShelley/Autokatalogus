@@ -26,7 +26,7 @@ import model.user;
 
 
 public class XmlWrite {
-    //
+    // Állítsd át magadnak
     private static final String CARXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
     private static final String USERXML = "D:\\Kiko\\netbeans\\projektek\\Autokatalogus\\src\\main\\java\\model\\users.xml";
     
