@@ -37,7 +37,7 @@ import org.json.JSONObject;
  */
 public class XmlRead {
     //Állítsd át magadnak
-    //Külön fájlba tároljuk a különböző osztályokat mert az xml írás fellülír mindent
+
     private static final String CARXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
     private static final String USERXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\users.xml";
     

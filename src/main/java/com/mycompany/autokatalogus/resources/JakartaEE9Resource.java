@@ -9,8 +9,12 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.ArrayList;
 import org.json.JSONArray;
 import static model.convert.StringToCar;
+import model.user;
+import org.json.JSONObject;
+
 
 /**
  *
@@ -56,6 +60,28 @@ public class JakartaEE9Resource {
         XmlWrite write = new XmlWrite();
         boolean siker = write.CarAdd(ki);
         return Response.ok(read.carRead().toString())
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+    
+    @GET
+    @Path("UserRead")
+    public Response UserRead(){
+        XmlRead read = new XmlRead();
+        ArrayList <user> users = read.UserRead();
+        JSONArray out = new JSONArray();
+        JSONObject temp = new JSONObject();
+        for (int i = 0; i < users.size(); i++){
+            temp.put("Name",users.get(i).getName());
+            temp.put("Id",users.get(i).getId());
+            temp.put("Phone",users.get(i).getPhone());
+            temp.put("Email",users.get(i).getEmail()) ;
+            temp.put("Cim",users.get(i).getCim()) ;
+            temp.put("Szul",users.get(i).getSzul());
+            out.put(temp);
+        }
+        
+        return Response.ok(out.toString())
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }
