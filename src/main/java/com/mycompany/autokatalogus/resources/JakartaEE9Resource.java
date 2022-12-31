@@ -1,6 +1,7 @@
 package com.mycompany.autokatalogus.resources;
 
 import controller.XmlRead;
+import controller.XmlWrite;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -8,14 +9,12 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-<<<<<<< Updated upstream
-=======
 import java.util.ArrayList;
 import org.json.JSONArray;
 import static model.convert.StringToCar;
 import model.user;
 import org.json.JSONObject;
->>>>>>> Stashed changes
+
 
 /**
  *
@@ -37,18 +36,30 @@ public class JakartaEE9Resource {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     public Response ReadChosenCar(String be){
-        String szetszedve[] = be.split("-",2);
-        
-        String elsos = szetszedve[0];
-        String masodiks = szetszedve[1];
-        
-        /*long alvaz = Integer.valueOf(elsos);
-        int motor = Integer.valueOf(masodiks);
-        
-        elsos = "12345678901234567";
-        masodiks = "1234";*/
+        String[] szetszedve = be.split("-",2);
+       
+        String alvaz = szetszedve[0];
+        String motor = szetszedve[1];
         XmlRead read = new XmlRead();
-        return Response.ok(read.carValaszt(elsos,masodiks).toString())
+        
+        return Response.ok(read.carValaszt(alvaz, motor).toString())
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+    
+    @POST
+    @Path("AddCar")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response AddCar(String be){
+        
+        JSONArray ki = new JSONArray();
+        ki = StringToCar(be);
+
+        XmlRead read = new XmlRead();
+        XmlWrite write = new XmlWrite();
+        boolean siker = write.CarAdd(ki);
+        return Response.ok(read.carRead().toString())
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }
