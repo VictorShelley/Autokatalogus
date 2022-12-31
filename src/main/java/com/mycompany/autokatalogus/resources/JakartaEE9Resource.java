@@ -10,6 +10,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.Date;
 import org.json.JSONArray;
 import static model.convert.StringToCar;
 import model.user;
@@ -83,6 +84,25 @@ public class JakartaEE9Resource {
         
         return Response.ok(out.toString())
                 .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+    
+    
+    //date miatt nem működik
+    //és nincs ötletem hogy oldjam meg
+    @POST
+    @Path("AddUser")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response AddUser(JSONObject be){    
+        XmlRead read = new XmlRead();
+        XmlWrite write = new XmlWrite();
+        ArrayList <user> list = read.UserRead();
+        //String asd = be.get("Szul").toString();
+        Date d = new Date(be.getString("Szul"));
+        user tmp = new user(be.get("Name").toString(),be.get("Id").toString(),be.get("Phone").toString(),be.get("Email").toString(),be.get("Cim").toString(),d);
+        list.add(tmp);
+        write.UserWhite(list);
+        return Response.ok()
                 .build();
     }
 }

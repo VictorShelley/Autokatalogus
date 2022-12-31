@@ -46,9 +46,10 @@ public class XmlWriteTest {
     public void testUserWhite() {
         System.out.println("UserWhite");
         ArrayList<user> users = new ArrayList<>();
-        Date d = new Date(00,05,12);
+        Date d = new Date(85,05,12);
         user u = new user("Végh Béla","6969XD","69/6969420","asd@asd.com","4269 Csajágarőcsőge Fő u.69",d);
         users.add(u);
+        XmlWrite x = new XmlWrite();
         XmlWrite.UserWhite(users);       
     }
     
