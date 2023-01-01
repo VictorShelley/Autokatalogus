@@ -25,6 +25,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import model.carEnum;
@@ -37,10 +39,10 @@ import org.json.JSONObject;
  */
 public class XmlRead {
     //Állítsd át magadnak
-    //private static final String CARXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
-    //private static final String USERXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\users.xml";
-    private static final String CARXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
-    private static final String USERXML = "D:\\Kiko\\netbeans\\projektek\\Autokatalogus\\src\\main\\java\\model\\users.xml";
+    private static final String CARXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
+    private static final String USERXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\users.xml";
+    //private static final String CARXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
+    //private static final String USERXML = "D:\\Kiko\\netbeans\\projektek\\Autokatalogus\\src\\main\\java\\model\\users.xml";
     
     public JSONObject carRead() {
         
@@ -319,10 +321,15 @@ public class XmlRead {
                            }
                     }
                     
-                    Long l = Long.parseLong(szul);
-                    Date d = new Date(l);
+                    Long stamp = Long.parseLong(szul);
+                    /*Date d = new Date(l);
+                    DateTimeFormatter dateForm = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     
-                    users.add(new user(name,id,phone,email,cim,d));
+                    Date myDate = new Date(l);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss");
+                    String myDateString = sdf.format(myDate);*/
+                    
+                    users.add(new user(name,id,phone,email,cim,stamp));
                     }
                 
                     

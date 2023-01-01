@@ -17,9 +17,9 @@ public class user{//Mindenre állítottam getter, setter minden kivéve Szem sz�
     private String phone; //check mennyi számjegy?
     private String email; //check @?
     private String cim; //Lakcím
-    private Date szul;//Szül idő (int year,int month,int day)
+    private Long szul;//Szül idő timestamp
 
-    public user (String name, String id, String phone, String email, String cim, Date szul){
+    public user (String name, String id, String phone, String email, String cim, Long szul){
         this.name = name;
         this.id = id;
         this.phone = phone;
@@ -48,7 +48,7 @@ public class user{//Mindenre állítottam getter, setter minden kivéve Szem sz�
         return cim;
     }
 
-    public Date getSzul() {
+    public Long getSzul() {
         return szul;
     }
 

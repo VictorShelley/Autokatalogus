@@ -30,8 +30,10 @@ import org.w3c.dom.Attr;
 
 public class XmlWrite {
     // Állítsd át magadnak
-    private static final String CARXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
-    private static final String USERXML = "D:\\Kiko\\netbeans\\projektek\\Autokatalogus\\src\\main\\java\\model\\users.xml";
+    private static final String CARXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
+    private static final String USERXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\users.xml";
+    //private static final String CARXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
+    //private static final String USERXML = "D:\\Kiko\\netbeans\\projektek\\Autokatalogus\\src\\main\\java\\model\\users.xml";
     
     
     public static void UserWhite(ArrayList<user> users) {
@@ -48,7 +50,7 @@ public class XmlWrite {
                 createChildElement(document, bookElement, "phone", users.get(i).getPhone());
                 createChildElement(document, bookElement, "email", users.get(i).getEmail());
                 createChildElement(document, bookElement, "cim", users.get(i).getCim());
-                createChildElement(document, bookElement, "szul", String.valueOf(users.get(i).getSzul().getTime()));
+                createChildElement(document, bookElement, "szul", String.valueOf(users.get(i).getSzul())); //.getTime() 
             }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

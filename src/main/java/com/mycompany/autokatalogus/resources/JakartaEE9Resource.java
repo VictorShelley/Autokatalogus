@@ -70,6 +70,7 @@ public class JakartaEE9Resource {
     public Response UserRead(){
         XmlRead read = new XmlRead();
         ArrayList <user> users = read.UserRead();
+        
         JSONArray out = new JSONArray();
         JSONObject temp = new JSONObject();
         for (int i = 0; i < users.size(); i++){
@@ -88,21 +89,20 @@ public class JakartaEE9Resource {
     }
     
     
-    //date miatt nem működik
-    //és nincs ötletem hogy oldjam meg
     @POST
     @Path("AddUser")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response AddUser(JSONObject be){    
+    @Produces(MediaType.TEXT_PLAIN) //postman teszthez
+    public Response AddUser(String be){
+        JSONObject userData = new JSONObject(be);
         XmlRead read = new XmlRead();
         XmlWrite write = new XmlWrite();
         ArrayList <user> list = read.UserRead();
-        //String asd = be.get("Szul").toString();
-        Date d = new Date(be.getString("Szul"));
-        user tmp = new user(be.get("Name").toString(),be.get("Id").toString(),be.get("Phone").toString(),be.get("Email").toString(),be.get("Cim").toString(),d);
+        user tmp = new user(userData.get("Name").toString(),userData.get("Id").toString(),userData.get("Phone").toString(),userData.get("Email").toString(),userData.get("Cim").toString(),userData.getLong("Szul"));
         list.add(tmp);
         write.UserWhite(list);
-        return Response.ok()
+        return Response.ok("Neve: "+userData.get("Name").toString())
+                .type(MediaType.APPLICATION_JSON)
                 .build();
     }
 }
