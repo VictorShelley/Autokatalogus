@@ -123,17 +123,22 @@ public class JakartaEE9Resource {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     public Response SellReadFull(){
-        //done.get(i+1).toString();
         XmlRead read = new XmlRead();
         JSONArray eddig = new JSONArray();
         eddig = read.EladasRead();
         JSONArray ki = new JSONArray();
-        int ossz = eddig.length();
-        for(int i = 0;i<=Integer.valueOf(eddig.get(ossz-4).toString());i++){
-            ki.put("Eladás id: " + eddig.get(i).toString());
-            ki.put("Vásárló :"); //Ide jönne a választható User read. valami valami .toString())
-            ki.put("Megvett autó: " + read.carValaszt(eddig.get(i+2).toString(), eddig.get(i+3).toString()));
+
+        for (int i=0; i < eddig.length(); i++) {
+            JSONObject eladas = eddig.getJSONObject(i);
+            JSONObject carData = new JSONObject();
+            
+            carData.put("eladasId" ,eladas.get("id").toString());
+            carData.put("userId", eladas.get("szem").toString()); //Ide jönne a választható User read. valami valami .toString()) todo
+            carData.put("carData", read.carValaszt(eladas.get("alvaz").toString(), eladas.get("motor").toString()));
+            
+            ki.put(carData);
         }
+       
         return Response.ok(ki.toString())
                 .type(MediaType.APPLICATION_JSON)
                 .build();

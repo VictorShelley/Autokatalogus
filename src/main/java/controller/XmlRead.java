@@ -39,11 +39,12 @@ import org.json.JSONObject;
  */
 public class XmlRead {
     //Állítsd át magadnak
-    //private static final String CARXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
-    //private static final String USERXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\users.xml";
-    private static final String CARXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
-    private static final String USERXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\users.xml";
-    private static final String SELLXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\eladasok.xml";
+    private static final String CARXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
+    private static final String USERXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\users.xml";
+    private static final String SELLXML = "C:\\Users\\balaz\\Documents\\GitHub\\Autokatalogus\\src\\main\\java\\model\\eladasok.xml";
+    //private static final String CARXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\kocsi.xml";
+    //private static final String USERXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\users.xml";
+    //private static final String SELLXML = "D:\\Netbeans Projects\\Autokatalogus\\src\\main\\java\\model\\eladasok.xml";
     //private static final String USERXML = "D:\\Kiko\\netbeans\\projektek\\Autokatalogus\\src\\main\\java\\model\\users.xml";
     
     public JSONObject carRead() {
@@ -274,6 +275,7 @@ public class XmlRead {
     
     public JSONArray EladasRead() {
         JSONArray read = new JSONArray();
+        
       
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
@@ -289,11 +291,11 @@ public class XmlRead {
           NodeList list = doc.getElementsByTagName("eladas");
 
           for (int temp = 0; temp < list.getLength(); temp++) {
-
+              
               Node node = list.item(temp);
 
               if (node.getNodeType() == Node.ELEMENT_NODE) {
-
+                  JSONObject eladas = new JSONObject();
                   Element element = (Element) node;
 
                   String id = element.getAttribute("id");
@@ -302,14 +304,16 @@ public class XmlRead {
                 String szem = element.getElementsByTagName("szem").item(0).getTextContent();
                 String alvaz = element.getElementsByTagName("alvaz").item(0).getTextContent();
                 String motor = element.getElementsByTagName("motor").item(0).getTextContent();
-
-
-                read.put(id);
-                read.put(szem);
-                read.put(alvaz);
-                read.put(motor);
+                
+                eladas.put("id", id);
+                eladas.put("szem", szem);
+                eladas.put("alvaz", alvaz);
+                eladas.put("motor", motor);
+                
+                read.put(eladas);
               }
           }
+          
 
       } catch (ParserConfigurationException | SAXException | IOException e) {
           e.printStackTrace();
