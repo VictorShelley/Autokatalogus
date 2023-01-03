@@ -105,4 +105,38 @@ public class JakartaEE9Resource {
                 .type(MediaType.APPLICATION_JSON)
                 .build();
     }
+    
+    @GET
+    @Path("SellRead")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response SellRead(){
+        //done.get(i+1).toString();
+        XmlRead read = new XmlRead();
+        return Response.ok(read.EladasRead().toString())
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+    
+    @GET
+    @Path("SellReadFull")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response SellReadFull(){
+        //done.get(i+1).toString();
+        XmlRead read = new XmlRead();
+        JSONArray eddig = new JSONArray();
+        eddig = read.EladasRead();
+        JSONArray ki = new JSONArray();
+        int ossz = eddig.length();
+        for(int i = 0;i<=Integer.valueOf(eddig.get(ossz-4).toString());i++){
+            ki.put("Eladás id: " + eddig.get(i).toString());
+            ki.put("Vásárló :"); //Ide jönne a választható User read. valami valami .toString())
+            ki.put("Megvett autó: " + read.carValaszt(eddig.get(i+2).toString(), eddig.get(i+3).toString()));
+        }
+        return Response.ok(ki.toString())
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+    
 }
