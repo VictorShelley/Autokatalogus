@@ -63,9 +63,7 @@ public class XmlRead {
 
           Document doc = db.parse(new File(CARXML));
           doc.getDocumentElement().normalize();
-          
-          
-          
+
           NodeList list = doc.getElementsByTagName("car");
 
           for (int temp = 0; temp < list.getLength(); temp++) {
@@ -73,20 +71,12 @@ public class XmlRead {
               Node node = list.item(temp);
 
               if (node.getNodeType() == Node.ELEMENT_NODE) {
-
                   JSONObject car = new JSONObject();
                   
                   Element element = (Element) node;
 
                   String id = element.getAttribute("id");//lineup id
 
-                  //szöveg
-                  /*String mapstring = element.getElementsByTagName("map").item(0).getTextContent();
-                  MapEnum map= MapEnum.valueOf(mapstring);
-                  String landingLocation = element.getElementsByTagName("landingLocation").item(0).getTextContent();
-                  String aimLocation = element.getElementsByTagName("aimLocation").item(0).getTextContent();
-                  String UI = element.getElementsByTagName("UI").item(0).getTextContent();*/
-                  
                   String brand = element.getElementsByTagName("brand").item(0).getTextContent();
                   String modell = element.getElementsByTagName("modell").item(0).getTextContent();
                   String kivitel = element.getElementsByTagName("kivitel").item(0).getTextContent();
@@ -210,14 +200,11 @@ public class XmlRead {
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
       try {
-          
           DocumentBuilder db = dbf.newDocumentBuilder();
 
           Document doc = db.parse(new File(CARXML));
           doc.getDocumentElement().normalize();
 
-          
-          
           NodeList list = doc.getElementsByTagName("car");
 
           for (int temp = 0; temp < list.getLength(); temp++) {
@@ -274,9 +261,8 @@ public class XmlRead {
   }
     
     public JSONArray EladasRead() {
-        JSONArray read = new JSONArray();
-        
-      
+       JSONArray read = new JSONArray();
+
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
       try {
@@ -286,8 +272,6 @@ public class XmlRead {
           Document doc = db.parse(new File(SELLXML));
           doc.getDocumentElement().normalize();
 
-          
-          
           NodeList list = doc.getElementsByTagName("eladas");
 
           for (int temp = 0; temp < list.getLength(); temp++) {
@@ -372,26 +356,32 @@ public class XmlRead {
                              }
                            }
                     }
-                    
                     Long stamp = Long.parseLong(szul);
-                    /*Date d = new Date(l);
-                    DateTimeFormatter dateForm = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    
-                    Date myDate = new Date(l);
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss");
-                    String myDateString = sdf.format(myDate);*/
-                    
+
                     users.add(new user(name,id,phone,email,cim,stamp));
                     }
-                
-                    
-                }
-            
+                }    
         } catch (Exception e) {          
             e.printStackTrace();
         }
         return users;
      }
+     
+     public JSONObject oneUserRead(String idNum) {
+         ArrayList<user> users = UserRead();
+         JSONObject temp = new JSONObject();
+         for (user User:users){
+             if (User.getId().equals(idNum)){
+                temp.put("Name",User.getName());
+                temp.put("Id",User.getId());
+                temp.put("Phone",User.getPhone());
+                temp.put("Email",User.getEmail()) ;
+                temp.put("Cim",User.getCim()) ;
+                temp.put("Szul",User.getSzul());
+             }
+         }
+         return temp;
+      }
 
     
 }
