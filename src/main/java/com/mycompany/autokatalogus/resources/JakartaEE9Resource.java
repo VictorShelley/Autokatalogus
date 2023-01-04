@@ -134,6 +134,7 @@ public class JakartaEE9Resource {
             
             carData.put("eladasId" ,eladas.get("id").toString());
             carData.put("userId", eladas.get("szem").toString()); //Ide jönne a választható User read. valami valami .toString()) todo
+            carData.put("userData", read.oneUserRead(eladas.get("szem").toString()));
             carData.put("carData", read.carValaszt(eladas.get("alvaz").toString(), eladas.get("motor").toString()));
             
             ki.put(carData);
